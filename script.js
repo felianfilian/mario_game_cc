@@ -1,1 +1,2 @@
-alert("Mario Game");
+const canvas = document.querySelector("canvas");
+const c = canvas.getContext("2D");
