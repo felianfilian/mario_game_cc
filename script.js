@@ -26,10 +26,16 @@ class Player {
   }
 
   update() {
-    this.position.y += this.velocity.y;
     this.draw();
+    this.position.y += this.velocity.y;
   }
 }
 
+function animate() {
+  requestAnimationFrame(animate);
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  player.update();
+}
+
 const player = new Player();
-player.update();
+animate();
