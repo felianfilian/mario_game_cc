@@ -83,6 +83,7 @@ function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   player.update();
+  platform.draw();
   // horizontal move
   if (keys.right.pressed) {
     player.velocity.x = 5;
@@ -92,9 +93,6 @@ function animate() {
     player.velocity.x = 0;
   }
 }
-
-const player = new Player();
-animate();
 
 addEventListener("keydown", ({ keyCode }) => {
   switch (keyCode) {
@@ -142,3 +140,9 @@ function jump() {
     doubleJump = false;
   }
 }
+
+const player = new Player();
+
+const platform = new Platform();
+
+animate();
