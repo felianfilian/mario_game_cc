@@ -85,9 +85,12 @@ function animate() {
   player.update();
   platform.draw();
   // horizontal move
-  if (keys.right.pressed) {
+  if (
+    keys.right.pressed &&
+    player.position.x + player.width < canvas.width - 10
+  ) {
     player.velocity.x = 5;
-  } else if (keys.left.pressed) {
+  } else if (keys.left.pressed && player.position.x > 10) {
     player.velocity.x = -5;
   } else {
     player.velocity.x = 0;
