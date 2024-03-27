@@ -87,13 +87,18 @@ function animate() {
   // horizontal move
   if (
     keys.right.pressed &&
-    player.position.x + player.width < canvas.width - 10
+    player.position.x + player.width < canvas.width - 300
   ) {
     player.velocity.x = 5;
-  } else if (keys.left.pressed && player.position.x > 10) {
+  } else if (keys.left.pressed && player.position.x > 150) {
     player.velocity.x = -5;
   } else {
     player.velocity.x = 0;
+    if (keys.right.pressed) {
+      platform.position.x -= 5;
+    } else if (keys.left.pressed) {
+      platform.position.x += 5;
+    }
   }
 
   checkCollission();
