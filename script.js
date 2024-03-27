@@ -67,6 +67,12 @@ class Platform {
       x: 0,
       y: 0,
     };
+    this.width = 200;
+    this.height = 20;
+  }
+  draw() {
+    c.fillStyle = "blue";
+    c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
 
