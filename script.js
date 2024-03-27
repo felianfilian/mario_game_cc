@@ -92,6 +92,8 @@ function animate() {
   } else {
     player.velocity.x = 0;
   }
+
+  checkCollission();
 }
 
 addEventListener("keydown", ({ keyCode }) => {
@@ -131,6 +133,18 @@ addEventListener("keyup", ({ keyCode }) => {
       break;
   }
 });
+
+function checkCollission() {
+  if (
+    player.position.y + player.height <= platform.position.y &&
+    player.position.y + player.height + player.velocity.y >=
+      platform.position.y &&
+    player.position.x + player.width >= platform.position.x &&
+    player.position.x <= platform.position.x + platform.width
+  ) {
+    player.velocity.y = 0;
+  }
+}
 
 function jump() {
   if (isGrounded) {
