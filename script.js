@@ -6,6 +6,9 @@ canvas.height = window.innerHeight;
 
 const gravity = 0.5;
 
+// sets the positionen of the actual x scroll
+let scrollOffset = 0;
+
 /////////////////////
 // player vars
 
@@ -62,7 +65,7 @@ class Player {
 }
 
 class Platform {
-  constructor(x, y) {
+  constructor({ x, y }) {
     this.position = {
       x,
       y: canvas.height - y,
@@ -98,10 +101,12 @@ function animate() {
   } else {
     player.velocity.x = 0;
     if (keys.right.pressed) {
+      scrollOffset += 5;
       platforms.forEach((platform) => {
         platform.position.x -= 5;
       });
     } else if (keys.left.pressed) {
+      scrollOffset -= 5;
       platforms.forEach((platform) => {
         platform.position.x += 5;
       });
@@ -109,6 +114,8 @@ function animate() {
   }
 
   checkCollission();
+
+  winCheck();
 }
 
 addEventListener("keydown", ({ keyCode }) => {
@@ -163,6 +170,12 @@ function checkCollission() {
   });
 }
 
+function winCheck() {
+  if (scrollOffset >= 2000) {
+    console.log("you win");
+  }
+}
+
 function jump() {
   if (isGrounded) {
     player.velocity.y -= jumpForce;
@@ -174,6 +187,9 @@ function jump() {
 
 const player = new Player();
 
-const platforms = [new Platform(300, 200), new Platform(600, 300)];
+const platforms = [
+  new Platform({ x: 300, y: 200 }),
+  new Platform({ x: 600, y: 300 }),
+];
 
 animate();
