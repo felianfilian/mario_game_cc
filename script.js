@@ -65,17 +65,23 @@ class Player {
 }
 
 class Platform {
-  constructor({ x, y }) {
+  constructor({ x, y, image }) {
+    this.img = image;
     this.position = {
       x,
       y: canvas.height - y,
     };
     this.width = 200;
-    this.height = 20;
+    this.height = 30;
   }
   draw() {
-    c.fillStyle = "blue";
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
+    c.drawImage(
+      this.img,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    );
   }
 }
 
@@ -85,11 +91,11 @@ class Platform {
 function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
-  player.update();
-  // looop trough platforms
+  // loop trough platforms
   platforms.forEach((platform) => {
     platform.draw();
   });
+  player.update();
   // horizontal move
   if (
     keys.right.pressed &&
@@ -187,9 +193,13 @@ function jump() {
 
 const player = new Player();
 
+const image = new Image();
+image.src = "./assets/platform.png";
+console.log(image);
+
 const platforms = [
-  new Platform({ x: 300, y: 200 }),
-  new Platform({ x: 600, y: 300 }),
+  new Platform({ x: 300, y: 200, image: image }),
+  new Platform({ x: 600, y: 300, image: image }),
 ];
 
 animate();
