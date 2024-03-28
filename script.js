@@ -195,7 +195,6 @@ const player = new Player();
 
 const image = new Image();
 image.src = "./assets/platform.png";
-console.log(image);
 
 const platforms = [
   new Platform({ x: 300, y: 200, image: image }),
