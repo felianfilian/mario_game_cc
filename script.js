@@ -67,12 +67,12 @@ class Player {
 class Platform {
   constructor({ x, y, image }) {
     this.img = image;
+    this.width = 401;
+    this.height = 80;
     this.position = {
       x,
-      y: canvas.height - y,
+      y: canvas.height - this.height - y,
     };
-    this.width = 200;
-    this.height = 30;
   }
   draw() {
     c.drawImage(
@@ -197,8 +197,10 @@ const image = new Image();
 image.src = "./assets/platform.png";
 
 const platforms = [
-  new Platform({ x: 300, y: 200, image: image }),
-  new Platform({ x: 600, y: 300, image: image }),
+  new Platform({ x: -400, y: 0, image: image }),
+  new Platform({ x: 0, y: 0, image: image }),
+  new Platform({ x: 400, y: 0, image: image }),
+  new Platform({ x: 800, y: 0, image: image }),
 ];
 
 animate();
