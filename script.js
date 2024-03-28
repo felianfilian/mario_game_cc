@@ -172,6 +172,8 @@ function checkCollission() {
       player.position.x <= platform.position.x + platform.width
     ) {
       player.velocity.y = 0;
+      isGrounded = true;
+      doubleJump = true;
     }
   });
 }
