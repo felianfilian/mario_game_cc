@@ -83,7 +83,10 @@ function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   player.update();
-  platform.draw();
+  // looop trough platforms
+  platforms.forEach((platform) => {
+    platform.draw();
+  });
   // horizontal move
   if (
     keys.right.pressed &&
@@ -95,9 +98,13 @@ function animate() {
   } else {
     player.velocity.x = 0;
     if (keys.right.pressed) {
-      platform.position.x -= 5;
+      platforms.forEach((platform) => {
+        platform.position.x -= 5;
+      });
     } else if (keys.left.pressed) {
-      platform.position.x += 5;
+      platforms.forEach((platform) => {
+        platform.position.x += 5;
+      });
     }
   }
 
@@ -143,15 +150,17 @@ addEventListener("keyup", ({ keyCode }) => {
 });
 
 function checkCollission() {
-  if (
-    player.position.y + player.height <= platform.position.y &&
-    player.position.y + player.height + player.velocity.y >=
-      platform.position.y &&
-    player.position.x + player.width >= platform.position.x &&
-    player.position.x <= platform.position.x + platform.width
-  ) {
-    player.velocity.y = 0;
-  }
+  platforms.forEach((platform) => {
+    if (
+      player.position.y + player.height <= platform.position.y &&
+      player.position.y + player.height + player.velocity.y >=
+        platform.position.y &&
+      player.position.x + player.width >= platform.position.x &&
+      player.position.x <= platform.position.x + platform.width
+    ) {
+      player.velocity.y = 0;
+    }
+  });
 }
 
 function jump() {
@@ -165,6 +174,6 @@ function jump() {
 
 const player = new Player();
 
-const platform = new Platform();
+const platforms = [new Platform()];
 
 animate();
