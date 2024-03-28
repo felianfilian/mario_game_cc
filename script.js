@@ -62,10 +62,10 @@ class Player {
 }
 
 class Platform {
-  constructor() {
+  constructor(x, y) {
     this.position = {
-      x: 400,
-      y: canvas.height - 200,
+      x,
+      y: canvas.height - y,
     };
     this.width = 200;
     this.height = 20;
@@ -174,6 +174,6 @@ function jump() {
 
 const player = new Player();
 
-const platforms = [new Platform()];
+const platforms = [new Platform(300, 200), new Platform(600, 300)];
 
 animate();
