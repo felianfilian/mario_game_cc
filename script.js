@@ -25,21 +25,6 @@ const keys = {
   },
 };
 
-////////////
-// Level Assets
-
-const imgPlatform = new Image();
-const imgHills = new Image();
-const imgBackground = new Image();
-imgPlatform.src = "./assets/platform.png";
-
-const platforms = [
-  new Platform({ x: -400, y: 0, image: imgPlatform }),
-  new Platform({ x: 0, y: 0, image: imgPlatform }),
-  new Platform({ x: 400, y: 0, image: imgPlatform }),
-  new Platform({ x: 800, y: 0, image: imgPlatform }),
-];
-
 ////////////////////
 // Classes
 
@@ -100,6 +85,27 @@ class Platform {
   }
 }
 
+class GenericObjects {
+  constructor({ x, y, image }) {
+    this.img = image;
+    this.width = 401;
+    this.height = 80;
+    this.position = {
+      x,
+      y,
+    };
+  }
+  draw() {
+    c.drawImage(
+      this.img,
+      this.position.x,
+      this.position.y,
+      this.width,
+      this.height
+    );
+  }
+}
+
 /////////////////////////
 // functions
 
@@ -107,6 +113,9 @@ function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   // loop trough platforms
+  genericObjects.forEach((genericObject) => {
+    genericObject.draw();
+  });
   platforms.forEach((platform) => {
     platform.draw();
   });
@@ -207,6 +216,32 @@ function jump() {
     doubleJump = false;
   }
 }
+
+function createImage(path) {
+  const image = new Image();
+  image.src = path;
+  return image;
+}
+
+////////////
+// Level Assets
+
+const imgHills = new Image();
+const imgBackground = new Image();
+imgPlatform = "./assets/platform.png";
+imgHills.src = "./assets/hills.png";
+imgBackground.src = "./assets/background.png";
+
+const genericObjects = [
+  new GenericObjects({ x: 0, y: 0, image: createImage(imgPlatform) }),
+];
+
+const platforms = [
+  new Platform({ x: -400, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 0, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 400, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 800, y: 0, image: createImage(imgPlatform) }),
+];
 
 const player = new Player();
 
