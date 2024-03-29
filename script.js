@@ -25,6 +25,21 @@ const keys = {
   },
 };
 
+////////////
+// Level Assets
+
+const imgPlatform = new Image();
+const imgHills = new Image();
+const imgBackground = new Image();
+imgPlatform.src = "./assets/platform.png";
+
+const platforms = [
+  new Platform({ x: -400, y: 0, image: imgPlatform }),
+  new Platform({ x: 0, y: 0, image: imgPlatform }),
+  new Platform({ x: 400, y: 0, image: imgPlatform }),
+  new Platform({ x: 800, y: 0, image: imgPlatform }),
+];
+
 ////////////////////
 // Classes
 
@@ -194,15 +209,5 @@ function jump() {
 }
 
 const player = new Player();
-
-const image = new Image();
-image.src = "./assets/platform.png";
-
-const platforms = [
-  new Platform({ x: -400, y: 0, image: image }),
-  new Platform({ x: 0, y: 0, image: image }),
-  new Platform({ x: 400, y: 0, image: image }),
-  new Platform({ x: 800, y: 0, image: image }),
-];
 
 animate();
