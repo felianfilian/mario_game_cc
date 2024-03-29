@@ -238,6 +238,13 @@ const genericObjects = [
     height: canvas.height + 2,
     image: createImage(imgBackground),
   }),
+  new GenericObjects({
+    x: 0,
+    y: canvas.height - 500,
+    width: 6000,
+    height: 500,
+    image: createImage(imgHills),
+  }),
 ];
 
 const platforms = [
