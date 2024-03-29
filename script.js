@@ -113,7 +113,8 @@ function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   // loop trough platforms
-  genericObjects.forEach((genericObject) => {
+  backgroundFixed.draw();
+  backgroundParallax.forEach((genericObject) => {
     genericObject.draw();
   });
   platforms.forEach((platform) => {
@@ -135,11 +136,18 @@ function animate() {
       platforms.forEach((platform) => {
         platform.position.x -= 5;
       });
+      backgroundParallax.forEach((genericObject) => {
+        genericObject.position.x -= 2;
+      });
     } else if (keys.left.pressed) {
       scrollOffset -= 5;
       platforms.forEach((platform) => {
         platform.position.x += 5;
       });
+      // backgroundParallax.forEach((genericObject) => {
+      //   genericObject.position.x += 2;
+      // });
+      moveObject(backgroundParallax, 2);
     }
   }
 
@@ -186,6 +194,12 @@ addEventListener("keyup", ({ keyCode }) => {
   }
 });
 
+function moveObject(objectToMove, moveAmount) {
+  objectToMove.forEach((genericObject) => {
+    genericObject.position.x += moveAmount;
+  });
+}
+
 function checkCollission() {
   platforms.forEach((platform) => {
     if (
@@ -230,14 +244,15 @@ const imgPlatform = "./assets/platform.png";
 const imgHills = "./assets/hills.png";
 const imgBackground = "./assets/background.png";
 
-const genericObjects = [
-  new GenericObjects({
-    x: 0,
-    y: -1,
-    width: canvas.width,
-    height: canvas.height + 2,
-    image: createImage(imgBackground),
-  }),
+const backgroundFixed = new GenericObjects({
+  x: 0,
+  y: -1,
+  width: canvas.width,
+  height: canvas.height + 2,
+  image: createImage(imgBackground),
+});
+
+const backgroundParallax = [
   new GenericObjects({
     x: 0,
     y: canvas.height - 500,
