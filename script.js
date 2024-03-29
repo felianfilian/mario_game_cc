@@ -86,10 +86,10 @@ class Platform {
 }
 
 class GenericObjects {
-  constructor({ x, y, image }) {
+  constructor({ x, y, width, height, image }) {
     this.img = image;
-    this.width = 401;
-    this.height = 80;
+    this.width = width;
+    this.height = height;
     this.position = {
       x,
       y,
@@ -226,14 +226,18 @@ function createImage(path) {
 ////////////
 // Level Assets
 
-const imgHills = new Image();
-const imgBackground = new Image();
-imgPlatform = "./assets/platform.png";
-imgHills.src = "./assets/hills.png";
-imgBackground.src = "./assets/background.png";
+const imgPlatform = "./assets/platform.png";
+const imgHills = "./assets/hills.png";
+const imgBackground = "./assets/background.png";
 
 const genericObjects = [
-  new GenericObjects({ x: 0, y: 0, image: createImage(imgPlatform) }),
+  new GenericObjects({
+    x: 0,
+    y: -1,
+    width: canvas.width,
+    height: canvas.height + 2,
+    image: createImage(imgBackground),
+  }),
 ];
 
 const platforms = [
