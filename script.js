@@ -133,20 +133,23 @@ function animate() {
     player.velocity.x = 0;
     if (keys.right.pressed) {
       scrollOffset += 5;
-      platforms.forEach((platform) => {
-        platform.position.x -= 5;
-      });
-      backgroundParallax.forEach((genericObject) => {
-        genericObject.position.x -= 2;
-      });
+      // platforms.forEach((platform) => {
+      //   platform.position.x -= 5;
+      // });
+      // backgroundParallax.forEach((genericObject) => {
+      //   genericObject.position.x -= 2;
+      // });
+      moveObject(platforms, -5);
+      moveObject(backgroundParallax, -2);
     } else if (keys.left.pressed) {
       scrollOffset -= 5;
-      platforms.forEach((platform) => {
-        platform.position.x += 5;
-      });
+      // platforms.forEach((platform) => {
+      //   platform.position.x += 5;
+      // });
       // backgroundParallax.forEach((genericObject) => {
       //   genericObject.position.x += 2;
       // });
+      moveObject(platforms, 5);
       moveObject(backgroundParallax, 2);
     }
   }
