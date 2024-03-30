@@ -6,6 +6,11 @@ canvas.height = window.innerHeight;
 
 const gravity = 0.5;
 
+const levelCollider = {
+  start: 0,
+  end: 2050,
+};
+
 // sets the positionen of the actual x scroll
 let scrollOffset = 0;
 
@@ -131,11 +136,12 @@ function animate() {
     player.velocity.x = -5;
   } else {
     player.velocity.x = 0;
-    if (keys.right.pressed) {
+    if (keys.right.pressed && scrollOffset < levelCollider.end) {
+      console.log(scrollOffset, levelCollider.end);
       scrollOffset += 5;
       moveObject(platforms, -5);
       moveObject(backgroundParallax, -2);
-    } else if (keys.left.pressed) {
+    } else if (keys.left.pressed && scrollOffset > levelCollider.start) {
       scrollOffset -= 5;
       moveObject(platforms, 5);
       moveObject(backgroundParallax, 2);
@@ -257,7 +263,11 @@ const platforms = [
   new Platform({ x: -400, y: 0, image: createImage(imgPlatform) }),
   new Platform({ x: 0, y: 0, image: createImage(imgPlatform) }),
   new Platform({ x: 400, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 800, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 1000, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 1600, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 2000, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 2400, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 2800, y: 0, image: createImage(imgPlatform) }),
 ];
 
 const player = new Player();
