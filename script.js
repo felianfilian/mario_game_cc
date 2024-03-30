@@ -7,7 +7,7 @@ canvas.height = window.innerHeight;
 const gravity = 0.5;
 
 const levelCollider = {
-  start: 0,
+  start: -100,
   end: 2050,
 };
 
@@ -62,9 +62,11 @@ class Player {
       this.velocity.y += gravity;
       isGrounded = false;
     } else {
-      this.velocity.y = 0;
-      isGrounded = true;
-      doubleJump = true;
+      console.log("DEATH");
+      setTimeout(() => {
+        this.position.x = 100;
+        this.position.y = 100;
+      }, 1000);
     }
   }
 }
@@ -137,7 +139,6 @@ function animate() {
   } else {
     player.velocity.x = 0;
     if (keys.right.pressed && scrollOffset < levelCollider.end) {
-      console.log(scrollOffset, levelCollider.end);
       scrollOffset += 5;
       moveObject(platforms, -5);
       moveObject(backgroundParallax, -2);
