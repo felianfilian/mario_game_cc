@@ -115,10 +115,16 @@ class GenericObjects {
 
 // variables
 
+const imgPlatform = "./assets/platform.png";
+const imgHills = "./assets/hills.png";
+const imgBackground = "./assets/background.png";
+
 /////////////////////////
 // functions
 
 function init() {
+  const player = new Player();
+
   const backgroundFixed = new GenericObjects({
     x: 0,
     y: -1,
@@ -148,7 +154,7 @@ function init() {
     new Platform({ x: 2800, y: 0, image: createImage(imgPlatform) }),
   ];
 
-  const player = new Player();
+  animate();
 }
 
 function animate() {
@@ -269,12 +275,3 @@ function createImage(path) {
   image.src = path;
   return image;
 }
-
-////////////
-// Level Assets
-
-const imgPlatform = "./assets/platform.png";
-const imgHills = "./assets/hills.png";
-const imgBackground = "./assets/background.png";
-
-animate();
