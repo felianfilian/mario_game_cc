@@ -11,14 +11,7 @@ const levelCollider = {
   end: 2050,
 };
 
-init();
-
-/////////////////////
-// player vars
-
 let jumpForce = 12;
-let isGrounded = true;
-let doubleJump = true;
 
 ////////////////////
 // Classes
@@ -110,6 +103,49 @@ const imgHills = "./assets/hills.png";
 const imgBackground = "./assets/background.png";
 
 let scrollOffset = 0;
+
+let player = new Player();
+
+let isGrounded = true;
+let doubleJump = true;
+
+let keys = {
+  right: {
+    pressed: false,
+  },
+  left: {
+    pressed: false,
+  },
+};
+
+let backgroundFixed = new GenericObjects({
+  x: 0,
+  y: -1,
+  width: canvas.width,
+  height: canvas.height + 2,
+  image: createImage(imgBackground),
+});
+
+let backgroundParallax = [
+  new GenericObjects({
+    x: 0,
+    y: canvas.height - 500,
+    width: 6000,
+    height: 500,
+    image: createImage(imgHills),
+  }),
+];
+
+let platforms = [
+  new Platform({ x: -400, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 0, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 400, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 1000, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 1600, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 2000, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 2400, y: 0, image: createImage(imgPlatform) }),
+  new Platform({ x: 2800, y: 0, image: createImage(imgPlatform) }),
+];
 
 /////////////////////////
 // functions
@@ -281,3 +317,5 @@ function createImage(path) {
   image.src = path;
   return image;
 }
+
+init();
