@@ -11,8 +11,7 @@ const levelCollider = {
   end: 2050,
 };
 
-// sets the positionen of the actual x scroll
-let scrollOffset = 0;
+init();
 
 /////////////////////
 // player vars
@@ -20,15 +19,6 @@ let scrollOffset = 0;
 let jumpForce = 12;
 let isGrounded = true;
 let doubleJump = true;
-
-const keys = {
-  right: {
-    pressed: false,
-  },
-  left: {
-    pressed: false,
-  },
-};
 
 ////////////////////
 // Classes
@@ -119,13 +109,29 @@ const imgPlatform = "./assets/platform.png";
 const imgHills = "./assets/hills.png";
 const imgBackground = "./assets/background.png";
 
+let scrollOffset = 0;
+
 /////////////////////////
 // functions
 
 function init() {
-  const player = new Player();
+  scrollOffset = 0;
 
-  const backgroundFixed = new GenericObjects({
+  player = new Player();
+
+  isGrounded = true;
+  doubleJump = true;
+
+  keys = {
+    right: {
+      pressed: false,
+    },
+    left: {
+      pressed: false,
+    },
+  };
+
+  backgroundFixed = new GenericObjects({
     x: 0,
     y: -1,
     width: canvas.width,
@@ -133,7 +139,7 @@ function init() {
     image: createImage(imgBackground),
   });
 
-  const backgroundParallax = [
+  backgroundParallax = [
     new GenericObjects({
       x: 0,
       y: canvas.height - 500,
@@ -143,7 +149,7 @@ function init() {
     }),
   ];
 
-  const platforms = [
+  platforms = [
     new Platform({ x: -400, y: 0, image: createImage(imgPlatform) }),
     new Platform({ x: 0, y: 0, image: createImage(imgPlatform) }),
     new Platform({ x: 400, y: 0, image: createImage(imgPlatform) }),
