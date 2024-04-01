@@ -113,8 +113,43 @@ class GenericObjects {
   }
 }
 
+// variables
+
 /////////////////////////
 // functions
+
+function init() {
+  const backgroundFixed = new GenericObjects({
+    x: 0,
+    y: -1,
+    width: canvas.width,
+    height: canvas.height + 2,
+    image: createImage(imgBackground),
+  });
+
+  const backgroundParallax = [
+    new GenericObjects({
+      x: 0,
+      y: canvas.height - 500,
+      width: 6000,
+      height: 500,
+      image: createImage(imgHills),
+    }),
+  ];
+
+  const platforms = [
+    new Platform({ x: -400, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 0, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 400, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 1000, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 1600, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 2000, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 2400, y: 0, image: createImage(imgPlatform) }),
+    new Platform({ x: 2800, y: 0, image: createImage(imgPlatform) }),
+  ];
+
+  const player = new Player();
+}
 
 function animate() {
   requestAnimationFrame(animate);
@@ -241,36 +276,5 @@ function createImage(path) {
 const imgPlatform = "./assets/platform.png";
 const imgHills = "./assets/hills.png";
 const imgBackground = "./assets/background.png";
-
-const backgroundFixed = new GenericObjects({
-  x: 0,
-  y: -1,
-  width: canvas.width,
-  height: canvas.height + 2,
-  image: createImage(imgBackground),
-});
-
-const backgroundParallax = [
-  new GenericObjects({
-    x: 0,
-    y: canvas.height - 500,
-    width: 6000,
-    height: 500,
-    image: createImage(imgHills),
-  }),
-];
-
-const platforms = [
-  new Platform({ x: -400, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 0, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 400, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 1000, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 1600, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 2000, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 2400, y: 0, image: createImage(imgPlatform) }),
-  new Platform({ x: 2800, y: 0, image: createImage(imgPlatform) }),
-];
-
-const player = new Player();
 
 animate();
