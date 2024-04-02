@@ -44,12 +44,6 @@ class Player {
     if (this.position.y + this.height + this.velocity.y <= canvas.height) {
       this.velocity.y += gravity;
       isGrounded = false;
-    } else {
-      console.log("DEATH");
-      setTimeout(() => {
-        this.position.x = 100;
-        this.position.y = 100;
-      }, 1000);
     }
   }
 }
@@ -106,10 +100,10 @@ let scrollOffset = 0;
 
 let player = new Player();
 
-let isGrounded = true;
-let doubleJump = true;
+let isGrounded = false;
+let doubleJump = false;
 
-let keys = {
+const keys = {
   right: {
     pressed: false,
   },
@@ -153,19 +147,8 @@ let platforms = [
 function init() {
   scrollOffset = 0;
 
-  player = new Player();
-
-  isGrounded = true;
-  doubleJump = true;
-
-  keys = {
-    right: {
-      pressed: false,
-    },
-    left: {
-      pressed: false,
-    },
-  };
+  isGrounded = false;
+  doubleJump = false;
 
   backgroundFixed = new GenericObjects({
     x: 0,
@@ -195,6 +178,8 @@ function init() {
     new Platform({ x: 2400, y: 0, image: createImage(imgPlatform) }),
     new Platform({ x: 2800, y: 0, image: createImage(imgPlatform) }),
   ];
+
+  player = new Player();
 
   animate();
 }
@@ -235,6 +220,10 @@ function animate() {
   checkCollission();
 
   winCheck();
+
+  if (player.position.y > canvas.height) {
+    location.reload();
+  }
 }
 
 addEventListener("keydown", ({ keyCode }) => {
